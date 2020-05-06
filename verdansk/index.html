@@ -1,0 +1,30 @@
+<img id="map" src="./../assets/verdansk/map.png"/>
+
+<style>
+    #map {
+        object-fit: cover;
+        width: 100%;
+    }
+    #pin {
+        position: absolute;
+    }
+    body {
+        background-color: black;
+    }
+</style>
+<script>
+    const IMAGE_RATIO = 0.93;
+    var img = document.getElementById("map");
+    var pin = new Image(64,64);
+    pin.src = "./../assets/verdansk/map.png";
+    pin.id = "pin";
+    x = getRandomInt(0,img.clientWidth);
+    y = getRandomInt(0,(img.clientWidth * IMAGE_RATIO));
+    pin.style.top = y;
+    pin.style.left = x;
+    document.body.append(pin);
+
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+    }
+</script>
