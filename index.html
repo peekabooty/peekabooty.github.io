@@ -1,8 +1,27 @@
-<img class="map" src="./assets/verdansk/map.png"/>
+<img id="map" src="./assets/verdansk/map.png"/>
 
 <style>
-    .map {
-        height: 100%;
+    #map {
+        object-fit: cover;
         width: 100%;
     }
+    #pin{
+        position: absolute;
+        opacity: 0.7;
+    }
 </style>
+<script>
+    var img = document.getElementById("map");
+    var pin = new Image(64,64);
+    pin.src = "./assets/pin.png";
+    pin.id = "pin";
+    x = getRandomInt(0,img.clientWidth);
+    y = getRandomInt(0,(img.clientWidth * 0.93));
+    pin.style.top = y;
+    pin.style.left = x;
+    document.body.append(pin);
+
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+    }
+</script>
