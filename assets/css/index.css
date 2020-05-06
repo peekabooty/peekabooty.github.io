@@ -1,19 +1,24 @@
-body {margin: 0px;padding: 0px;background-color: black;}
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: black;
+}
 
-#image-index {width: 100%;float: right;}
+#image-index {
+    float: left;
+    width: 33.33%;
+    height: 100%;
+    object-fit: cover;
+}
 
 a #image-index {
-    -webkit-transition: all 0.5s ease-out; /* Safari and Chrome */
-    -moz-transition: all 0.5s ease-out; /* Firefox */
-    -ms-transition: all 0.5s ease-out; /* IE 9 */
-    -o-transition: all 0.5s ease-out; /* Opera */
-    transition: all 0.5s ease-out;
+    -webkit-transition: all 0.4s ease-out; /* Safari and Chrome */
+    -moz-transition: all 0.4s ease-out; /* Firefox */
+    -ms-transition: all 0.4s ease-out; /* IE 9 */
+    -o-transition: all 0.4s ease-out; /* Opera */
+    transition: all 0.4s ease-out;
 }
 
 a:hover #image-index {
-    -webkit-transform: translateY(5%); /* Safari and Chrome */
-    -moz-transform: translateY(5%); /* Firefox */
-    -ms-transform: translateY(5%); /* IE 9 */
-    -o-transform: translateY(5%); /* Opera */
-    transform: translateY(5%);
+    transform: scale(1.05)
 }
