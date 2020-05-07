@@ -3,7 +3,6 @@
     <link rel="icon" href="./../static/assets/icon.png" type="image/png" />
 </head>
 <body>
-    <canvas id="canvas"></canvas>
     <h2 id="pixel_data"></h2>
 </body>
 <script>
@@ -17,7 +16,7 @@
     img.onload = function() {
         console.log("onImageLoad");
       img.style.display = 'none';
-      var canvas = document.getElementById("canvas");
+      var canvas = document.createElement('canvas');
       canvas.width = img.width
       canvas.height = img.height
       var ctx = canvas.getContext('2d');
