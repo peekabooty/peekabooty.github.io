@@ -7,6 +7,9 @@
 <img id="map" src="./../static/assets/verdansk/map.png"/>
 
 <style>
+    #canvas {
+        display: none;
+    }
     #map {
         object-fit: cover;
         width: 100%;
@@ -41,7 +44,6 @@
         var pixel = ctx.getImageData(x, y, 1, 1);
         var data = pixel.data;
         console.log(data);
-        var canvas = document.getElementById("pixel_data");
         var rgba = 'rgba(' + data[0] + ', ' + data[1] +
                 ', ' + data[2] + ', ' + (data[3] / 255) + ')';
         console.log(rgba);
