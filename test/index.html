@@ -10,8 +10,8 @@
     var tries = 0;
     var img = new Image();
     img.onload = function () {
-        loadDropZonesMap();
-        var dropZone = getRandomDropZone();
+        var map = loadDropZonesMap();
+        var dropZone = getRandomDropZone(map);
         renderRandomDropZone(dropZone);
     };
     img.src = "./../static/assets/verdansk/mask.png";
@@ -23,26 +23,30 @@
         canvas.height = img.height
         var ctx = canvas.getContext('2d');
         ctx.drawImage(img, 0, 0)
+        return {
+            ctx: ctx,
+            img: img
+        }
     }
 
-    function getRandomDropZone() {
-        function getNextPixel(context, img) {
+    function getRandomDropZone(map) {
+        function getNextPixel(map.ctx, map.img) {
             function getRandomInt(min, max) {
                 return Math.floor(Math.random() * (max - min)) + min;
             }
-            x = getRandomInt(0, img.width);
+            x = getRandomInt(0, map.img.width);
             const IMAGE_RATIO = 0.93;
-            y = getRandomInt(0, img.height);
+            y = getRandomInt(0, map.img.height);
             var pixel = context.getImageData(x, y, 1, 1);
             var data = pixel.data;
             return data
         }
-        var data = getNextPixel(ctx, img);
+        var data = getNextPixel(map.ctx, map.img);
         while (!isWhite(data)) {
             function isWhite(data) {
                 return data[0] == 255 && data[1] == 255 && data[2] == 255
             }
-            data = getNextPixel(ctx, img);
+            data = getNextPixel(map.ctx, map.img);
             tries++;
         }
         return {
@@ -53,6 +57,6 @@
 
     function renderRandomDropZone(dropZone) {
         var dropZoneH2 = document.getElementById("dropZone");
-        dropZoneH2.innerHTML = `Se acabó el juego, nos deplegamos: ${x},${y}`
+        dropZoneH2.innerHTML = `Se acabó el juego, nos deplegamos: ${dropZone.x},${dropZone.y}`
     }
 </script>
