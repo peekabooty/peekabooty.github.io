@@ -44,7 +44,7 @@
             x = response[1];
             y = response[2];
         }
-        pin.style.top = getRelativeX(y, img.height, map.height);
+        pin.style.top = getRelativeY(y, img.height, map.height);
         pin.style.left = getRelativeX(x, img.width, map.width);
         document.body.append(pin);
     };
@@ -67,11 +67,17 @@
     }
 
     function getRelativeX(dropZoneX, maskWidth, mapWidth) {
-        return dropZoneX * mapWidth / maskWidth
+        console.log(`dropZoneX: ${dropZoneX}, mapWidth: ${mapWidth}, maskWidth: ${maskWidth}`)
+        var relativeDropZoneX = dropZoneX * mapWidth / maskWidth
+        console.log(`relativeDropZoneX: ${relativeDropZoneX}`)
+        return relativeDropZoneX
     }
 
     function getRelativeY(dropZoneY, maskHeight, mapHeight) {
-        return dropZoneY * mapHeight / maskHeight
+        console.log(`dropZoneY: ${dropZoneY}, mapHeight: ${mapHeight}, maskHeight: ${maskHeight}`)
+        var relativeDropZoneY = dropZoneY * mapHeight / maskHeight
+        console.log(`relativeDropZoneY: ${relativeDropZoneY}`)
+        return relativeDropZoneY
     }
 
 </script>
