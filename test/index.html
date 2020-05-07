@@ -3,16 +3,18 @@
     <link rel="icon" href="./../static/assets/icon.png" type="image/png" />
 </head>
 <body>
-    <img id="img" src="./../static/assets/verdansk/test.jpg"/>
+<h1>Toma test, hijoputa</h1>
 </body>
 <script>
+    console.log("onStart script");
     var img = new Image();
     img.crossOrigin = "anonymous"
     img.onerror = function(e) {
+        console.log("onImageError");
         console.log(e);
     }
     img.onload = function() {
-        console.log("onload");
+        console.log("onImageLoad");
 <!--      img.style.display = 'none';-->
 <!--      var canvas = document.getElementById("canvas");-->
 <!--      var ctx = canvas.getContext('2d');-->
@@ -22,4 +24,5 @@
 <!--      console.log(data);-->
     };
     img.src = "./../static/assets/verdansk/test.jpg";
+    console.log("onFinish script");
 </script>
