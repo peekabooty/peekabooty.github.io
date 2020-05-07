@@ -6,6 +6,8 @@
     <h2 id="pixel_data"></h2>
 </body>
 <script>
+    var tries = 0;
+    var right = false;
     console.log("onStart script");
     var img = new Image();
     img.crossOrigin = "anonymous"
@@ -24,19 +26,32 @@
       x = getRandomInt(0,img.width);
       const IMAGE_RATIO = 0.93;
       y = getRandomInt(0,(img.height * IMAGE_RATIO));
-      var pixel = ctx.getImageData(x, y, 1, 1);
-      var data = pixel.data;
-      console.log(data);
-      var rgba = 'rgba(' + data[0] + ', ' + data[1] +
+      var data = getNextPixel(ctx, img);
+      while (!isWhite(data)) {
+        data = getNextPixel();
+        tries++;
+      }
+            var rgba = 'rgba(' + data[0] + ', ' + data[1] +
             ', ' + data[2] + ', ' + (data[3] / 255) + ')';
       var h2 = document.getElementById("pixel_data");
-      h2.innerHTML = `${x},${y} - ${rgba}`
+      h2.innerHTML = `${x},${y} - ${rgba} [${tries} tries]`
     };
-    img.src = "./../static/assets/verdansk/map.png";
-    console.log("onFinish script");
-
+    img.src = "./../static/assets/verdansk/mask.png";
 
     function getRandomInt(min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
+    }
+
+    function getNextPixel(context, img) {
+      x = getRandomInt(0,img.width);
+      const IMAGE_RATIO = 0.93;
+      y = getRandomInt(0,(img.height * IMAGE_RATIO));
+      var pixel = context.getImageData(x, y, 1, 1);
+      var data = pixel.data;
+      return data
+    }
+
+    function isWhite(data) {
+        return data[0] == 255 && data[1] == 255 && data[2] == 255
     }
 </script>
