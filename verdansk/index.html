@@ -35,6 +35,8 @@
     img.onload = function() {
         img.style.display = 'none';
         var canvas = document.createElement("canvas");
+        canvas.width = map.clientWidth;
+        canvas.height = map.clientWidth * IMAGE_RATIO;
         var ctx = canvas.getContext('2d');
         ctx.drawImage(img, 0, 0)
         var pixel = ctx.getImageData(x, y, 1, 1);
