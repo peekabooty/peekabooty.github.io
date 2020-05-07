@@ -22,7 +22,7 @@
 <script>
     const IMAGE_RATIO = 0.93;
 
-    var pin = new Image(64, 64);
+    var pin = new Image();
     pin.src = "./../static/assets/pin.png";
     pin.id = "pin";
 
@@ -44,8 +44,8 @@
             x = response[1];
             y = response[2];
         }
-        pin.style.top = getRelativeY(y, img.height, map.height);
-        pin.style.left = getRelativeX(x, img.width, map.width);
+        pin.style.top = getRelativeY(y, img.height, map.height)-pin.height;
+        pin.style.left = getRelativeX(x, img.width, map.width)-(pin.width/2);
         document.body.append(pin);
     };
     img.src = "./../static/assets/verdansk/mask.png";
