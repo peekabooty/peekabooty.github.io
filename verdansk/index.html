@@ -3,6 +3,7 @@
     <link rel="icon" href="./../static/assets/icon.png" type="image/png" />
 </head>
 
+<canvas id="canvas"></canvas>
 <img id="map" src="./../static/assets/verdansk/map.png"/>
 
 <style>
@@ -18,14 +19,6 @@
     }
 </style>
 <script>
-    var mask = new Image();
-    mask.src = "./../static/assets/verdansk/test.jpg";
-    var canvas = document.createElement("canvas");
-    var ctx = canvas.getContext("2d");
-    mask.onload = function() {
-        ctx.drawImage(mask, 0, 0);
-    };
-
     const IMAGE_RATIO = 0.93;
 
     var pin = new Image(64,64);
@@ -39,11 +32,21 @@
     pin.style.left = x;
     document.body.append(pin);
 
-    var pixel = ctx.getImageData(x, y, 1, 1);
-    var data = pixel.data;
-    var rgba = 'rgba(' + data[0] + ', ' + data[1] +
+    var img = new Image();
+    img.onload = function() {
+        img.style.display = 'none';
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0)
+        var pixel = ctx.getImageData(x, y, 1, 1);
+        var data = pixel.data;
+        console.log(data);
+        var canvas = document.getElementById("pixel_data");
+        var rgba = 'rgba(' + data[0] + ', ' + data[1] +
                 ', ' + data[2] + ', ' + (data[3] / 255) + ')';
-    console.log(rgba);
+        console.log(rgba);
+    };
+    img.src = "./../static/assets/verdansk/mask.jpg";
 
     function getRandomInt(min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
