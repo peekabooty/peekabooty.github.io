@@ -11,7 +11,7 @@
     var img = new Image();
     img.onload = function () {
         loadDropZonesMap();
-        var dropZone = getRandomDropZone(map);
+        var dropZone = getRandomDropZone();
         renderRandomDropZone(dropZone);
     };
     img.src = "./../static/assets/verdansk/mask.png";
