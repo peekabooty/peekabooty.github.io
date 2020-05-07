@@ -1,0 +1,42 @@
+<head>
+    <title>Verdansk</title>
+    <link rel="icon" href="./../static/assets/icon.png" type="image/png" />
+</head>
+<body>
+    <h1>Toma test, hijoputa</h1>
+    <h2 id="pixel_data"></h2>
+    <canvas id="canvas"></canvas>
+</body>
+<script>
+    console.log("onStart script");
+    var img = new Image();
+    img.crossOrigin = "anonymous"
+    img.onerror = function(e) {
+        console.log("onImageError");
+        console.log(e);
+    }
+    img.onload = function() {
+        console.log("onImageLoad");
+      img.style.display = 'none';
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0)
+      x = getRandomInt(0,img.clientWidth);
+      const IMAGE_RATIO = 0.93;
+      y = getRandomInt(0,(img.clientWidth * IMAGE_RATIO));
+      var pixel = ctx.getImageData(x, y, 1, 1);
+      var data = pixel.data;
+      console.log(data);
+      var rgba = 'rgba(' + data[0] + ', ' + data[1] +
+            ', ' + data[2] + ', ' + (data[3] / 255) + ')';
+      var h1 = document.getElementById("pixel_data");
+      h1.text = "${x},${y} - ${rgba}"
+    };
+    img.src = "./../static/assets/verdansk/map.png";
+    console.log("onFinish script");
+
+
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+    }
+</script>
