@@ -1,0 +1,23 @@
+<head>
+    <title>Verdansk</title>
+    <link rel="icon" href="./../static/assets/icon.png" type="image/png" />
+</head>
+
+<script>
+    var img = new Image();
+    img.crossOrigin = "anonymous"
+    img.onerror = function(e) {
+        console.log(e);
+    }
+    img.onload = function() {
+        console.log("onload");
+<!--      img.style.display = 'none';-->
+<!--      var canvas = document.getElementById("canvas");-->
+<!--      var ctx = canvas.getContext('2d');-->
+<!--      ctx.drawImage(img, 0, 0)-->
+<!--      var pixel = ctx.getImageData(x, y, 1, 1);-->
+<!--      var data = pixel.data;-->
+<!--      console.log(data);-->
+    };
+    img.src = "./../static/assets/verdansk/test.jpg";
+</script>
