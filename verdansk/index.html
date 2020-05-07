@@ -3,16 +3,18 @@
     <link rel="icon" href="./../static/assets/icon.png" type="image/png" />
 </head>
 
-<img id="map" src="./../static/assets/verdansk/map.png"/>
+<img id="map" src="./../static/assets/verdansk/map.png" />
 
 <style>
     #map {
         object-fit: cover;
         width: 100%;
     }
+
     #pin {
         position: absolute;
     }
+
     body {
         background-color: black;
     }
@@ -20,31 +22,30 @@
 <script>
     const IMAGE_RATIO = 0.93;
 
-    var pin = new Image(64,64);
+    var pin = new Image(64, 64);
     pin.src = "./../static/assets/pin.png";
     pin.id = "pin";
 
     var map = document.getElementById("map");
 
     var img = new Image();
-    img.onload = function() {
+    img.onload = function () {
         img.style.display = 'none';
         var canvas = document.createElement("canvas");
         canvas.width = map.clientWidth;
         canvas.height = map.clientWidth * IMAGE_RATIO;
         var ctx = canvas.getContext('2d');
         ctx.drawImage(img, 0, 0)
-        data = [0,0,0];
-        while(!isWhite(data))
-        {
-            response = getNextPixel(ctx,img);
+        data = [0, 0, 0];
+        while (!isWhite(data)) {
+            response = getNextPixel(ctx, img);
             data = response[0];
             console.log(data);
             x = response[1];
             y = response[2];
-        }   
-        pin.style.top = y;
-        pin.style.left = x;
+        }
+        pin.style.top = getRelativeX(y, img.height, map.height);
+        pin.style.left = getRelativeX(x, img.width, map.width);
         document.body.append(pin);
     };
     img.src = "./../static/assets/verdansk/mask.png";
@@ -53,16 +54,24 @@
         return Math.floor(Math.random() * (max - min)) + min;
     }
 
-    function getNextPixel(ctx,img) {
-        x = getRandomInt(0,img.width);
-        y = getRandomInt(0,(img.height * IMAGE_RATIO));
+    function getNextPixel(ctx, img) {
+        x = getRandomInt(0, img.width);
+        y = getRandomInt(0, (img.height * IMAGE_RATIO));
         var pixel = ctx.getImageData(x, y, 1, 1);
         var data = pixel.data;
-        return [data,x,y]
+        return [data, x, y]
     }
 
     function isWhite(data) {
         return data[0] == 255 && data[1] == 255 && data[2] == 255
+    }
+
+    function getRelativeX(dropZoneX, maskWidth, mapWidth) {
+        return dropZoneX * mapWidth / maskWidth
+    }
+
+    function getRelativeY(dropZoneY, maskHeight, mapHeight) {
+        return dropZoneY * mapHeight / maskHeight
     }
 
 </script>
