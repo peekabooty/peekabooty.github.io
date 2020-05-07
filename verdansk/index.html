@@ -25,11 +25,6 @@
     pin.id = "pin";
 
     var map = document.getElementById("map");
-    x = getRandomInt(0,map.clientWidth);
-    y = getRandomInt(0,(map.clientWidth * IMAGE_RATIO));
-    pin.style.top = y;
-    pin.style.left = x;
-    document.body.append(pin);
 
     var img = new Image();
     img.onload = function() {
@@ -39,11 +34,14 @@
         canvas.height = map.clientWidth * IMAGE_RATIO;
         var ctx = canvas.getContext('2d');
         ctx.drawImage(img, 0, 0)
-        var pixel = ctx.getImageData(x, y, 1, 1);
-        var data = pixel.data;
-        var rgba = 'rgba(' + data[0] + ', ' + data[1] +
-                ', ' + data[2] + ', ' + (data[3] / 255) + ')';
-        console.log(rgba);
+        data = [0,0,0];
+        while(!isWhite(data))
+        {
+            var data,x,y = getNextPixel(ctx,img);
+        }   
+        pin.style.top = y;
+        pin.style.left = x;
+        document.body.append(pin);
     };
     img.src = "./../static/assets/verdansk/mask.png";
 
@@ -52,12 +50,12 @@
     }
 
     function getNextPixel(context, img) {
-      x = getRandomInt(0,img.width);
-      const IMAGE_RATIO = 0.93;
-      y = getRandomInt(0,(img.height * IMAGE_RATIO));
-      var pixel = context.getImageData(x, y, 1, 1);
-      var data = pixel.data;
-      return data
+        x = getRandomInt(0,img.width);
+        const IMAGE_RATIO = 0.93;
+        y = getRandomInt(0,(img.height * IMAGE_RATIO));
+        var pixel = context.getImageData(x, y, 1, 1);
+        var data = pixel.data;
+        return data,x,y
     }
 
     function isWhite(data) {
