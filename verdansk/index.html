@@ -1,9 +1,9 @@
 <head>
     <title>Verdansk</title>
-    <link rel="icon" href="./../assets/icon.png" type="image/png" />
+    <link rel="icon" href="./../static/assets/icon.png" type="image/png" />
 </head>
 
-<img id="map" src="./../assets/verdansk/map.png"/>
+<img id="map" src="./../static/assets/verdansk/map.png"/>
 
 <style>
     #map {
@@ -18,16 +18,32 @@
     }
 </style>
 <script>
+    var mask = new Image();
+    mask.src = "./../static/assets/verdansk/test.jpg";
+    var canvas = document.createElement("canvas");
+    var ctx = canvas.getContext("2d");
+    mask.onload = function() {
+        ctx.drawImage(mask, 0, 0);
+    };
+
     const IMAGE_RATIO = 0.93;
-    var img = document.getElementById("map");
+
     var pin = new Image(64,64);
-    pin.src = "./../assets/pin.png";
+    pin.src = "./../static/assets/pin.png";
     pin.id = "pin";
-    x = getRandomInt(0,img.clientWidth);
-    y = getRandomInt(0,(img.clientWidth * IMAGE_RATIO));
+
+    var map = document.getElementById("map");
+    x = getRandomInt(0,map.clientWidth);
+    y = getRandomInt(0,(map.clientWidth * IMAGE_RATIO));
     pin.style.top = y;
     pin.style.left = x;
     document.body.append(pin);
+
+    var pixel = ctx.getImageData(x, y, 1, 1);
+    var data = pixel.data;
+    var rgba = 'rgba(' + data[0] + ', ' + data[1] +
+                ', ' + data[2] + ', ' + (data[3] / 255) + ')';
+    console.log(rgba);
 
     function getRandomInt(min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
