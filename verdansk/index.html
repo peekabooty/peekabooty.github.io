@@ -48,4 +48,18 @@
     function getRandomInt(min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
     }
+
+    function getNextPixel(context, img) {
+      x = getRandomInt(0,img.width);
+      const IMAGE_RATIO = 0.93;
+      y = getRandomInt(0,(img.height * IMAGE_RATIO));
+      var pixel = context.getImageData(x, y, 1, 1);
+      var data = pixel.data;
+      return data
+    }
+
+    function isWhite(data) {
+        return data[0] == 255 && data[1] == 255 && data[2] == 255
+    }
+
 </script>
