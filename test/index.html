@@ -3,7 +3,8 @@
     <link rel="icon" href="./../static/assets/icon.png" type="image/png" />
 </head>
 <body>
-<h1>Toma test, hijoputa</h1>
+    <h1>Toma test, hijoputa</h1>
+    <h2 id="pixel_data"></h2>
 </body>
 <script>
     console.log("onStart script");
@@ -15,14 +16,25 @@
     }
     img.onload = function() {
         console.log("onImageLoad");
-<!--      img.style.display = 'none';-->
-<!--      var canvas = document.getElementById("canvas");-->
-<!--      var ctx = canvas.getContext('2d');-->
-<!--      ctx.drawImage(img, 0, 0)-->
-<!--      var pixel = ctx.getImageData(x, y, 1, 1);-->
-<!--      var data = pixel.data;-->
-<!--      console.log(data);-->
+      img.style.display = 'none';
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0)
+      x = getRandomInt(0,map.clientWidth);
+      y = getRandomInt(0,(map.clientWidth * IMAGE_RATIO));
+      var pixel = ctx.getImageData(x, y, 1, 1);
+      var data = pixel.data;
+      console.log(data);
+      var canvas = document.getElementById("pixel_data");
+      var rgba = 'rgba(' + data[0] + ', ' + data[1] +
+            ', ' + data[2] + ', ' + (data[3] / 255) + ')';
+      h1.text = "${x},${y} - ${rgba}"
     };
     img.src = "./../static/assets/verdansk/test.jpg";
     console.log("onFinish script");
+
+
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+    }
 </script>
