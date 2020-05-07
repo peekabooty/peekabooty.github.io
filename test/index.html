@@ -20,9 +20,9 @@
       var canvas = document.getElementById("canvas");
       var ctx = canvas.getContext('2d');
       ctx.drawImage(img, 0, 0)
-      x = getRandomInt(0,img.clientWidth);
+      x = getRandomInt(0,img.width);
       const IMAGE_RATIO = 0.93;
-      y = getRandomInt(0,(img.clientWidth * IMAGE_RATIO));
+      y = getRandomInt(0,(img.height * IMAGE_RATIO));
       var pixel = ctx.getImageData(x, y, 1, 1);
       var data = pixel.data;
       console.log(data);
