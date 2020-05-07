@@ -42,10 +42,10 @@
             return data
         }
         var data = getNextPixel(map.ctx, map.img)
-        while (!isWhite(data)) {
-            function isWhite(data) {
+        function isWhite(data) {
                 return data[0] == 255 && data[1] == 255 && data[2] == 255
             }
+        while (!isWhite(data)) {
             data = getNextPixel(map.ctx, map.img);
             tries++;
         }
