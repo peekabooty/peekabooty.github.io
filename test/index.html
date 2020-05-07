@@ -3,9 +3,8 @@
     <link rel="icon" href="./../static/assets/icon.png" type="image/png" />
 </head>
 <body>
-    <h1>Toma test, hijoputa</h1>
-    <h2 id="pixel_data"></h2>
     <canvas id="canvas"></canvas>
+    <h2 id="pixel_data"></h2>
 </body>
 <script>
     console.log("onStart script");
@@ -29,8 +28,8 @@
       console.log(data);
       var rgba = 'rgba(' + data[0] + ', ' + data[1] +
             ', ' + data[2] + ', ' + (data[3] / 255) + ')';
-      var h1 = document.getElementById("pixel_data");
-      h1.text = "${x},${y} - ${rgba}"
+      var h2 = document.getElementById("pixel_data");
+      h2.innerHTML = "${x},${y} - ${rgba}"
     };
     img.src = "./../static/assets/verdansk/map.png";
     console.log("onFinish script");
