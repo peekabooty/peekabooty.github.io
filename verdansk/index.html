@@ -37,7 +37,10 @@
         data = [0,0,0];
         while(!isWhite(data))
         {
-            var data,x,y = getNextPixel(ctx,img);
+            response = getNextPixel(ctx,img);
+            data = response[0];
+            x = response[1];
+            y = response[2];
         }   
         pin.style.top = y;
         pin.style.left = x;
@@ -49,13 +52,12 @@
         return Math.floor(Math.random() * (max - min)) + min;
     }
 
-    function getNextPixel(context, img) {
+    function getNextPixel(ctx,img) {
         x = getRandomInt(0,img.width);
-        const IMAGE_RATIO = 0.93;
         y = getRandomInt(0,(img.height * IMAGE_RATIO));
-        var pixel = context.getImageData(x, y, 1, 1);
+        var pixel = ctx.getImageData(x, y, 1, 1);
         var data = pixel.data;
-        return data,x,y
+        return [data,x,y]
     }
 
     function isWhite(data) {
