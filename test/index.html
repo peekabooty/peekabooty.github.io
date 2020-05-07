@@ -7,21 +7,21 @@
     <h2 id="dropZone"></h2>
 </body>
 <script>
-    var tries = 0;
-    var img = new Image();
+    var tries = 0
+    var img = new Image()
     img.onload = function () {
-        var map = loadDropZonesMap();
-        var dropZone = getRandomDropZone(map);
-        renderRandomDropZone(dropZone);
+        var map = loadDropZonesMap()
+        var dropZone = getRandomDropZone(map)
+        renderRandomDropZone(dropZone)
     };
-    img.src = "./../static/assets/verdansk/mask.png";
+    img.src = "./../static/assets/verdansk/mask.png"
 
     function loadDropZonesMap() {
-        img.style.display = 'none';
-        var canvas = document.createElement('canvas');
+        img.style.display = 'none'
+        var canvas = document.createElement('canvas')
         canvas.width = img.width
         canvas.height = img.height
-        var ctx = canvas.getContext('2d');
+        var ctx = canvas.getContext('2d')
         ctx.drawImage(img, 0, 0)
         return {
             ctx: ctx,
@@ -30,18 +30,18 @@
     }
 
     function getRandomDropZone(map) {
-        function getNextPixel(map.ctx, map.img) {
+        function getNextPixel(ctx, img) {
             function getRandomInt(min, max) {
-                return Math.floor(Math.random() * (max - min)) + min;
+                return Math.floor(Math.random() * (max - min)) + min
             }
-            x = getRandomInt(0, map.img.width);
-            const IMAGE_RATIO = 0.93;
-            y = getRandomInt(0, map.img.height);
-            var pixel = context.getImageData(x, y, 1, 1);
-            var data = pixel.data;
+            x = getRandomInt(0, img.width)
+            const IMAGE_RATIO = 0.93
+            y = getRandomInt(0, img.height)
+            var pixel = ctx.getImageData(x, y, 1, 1)
+            var data = pixel.data
             return data
         }
-        var data = getNextPixel(map.ctx, map.img);
+        var data = getNextPixel(map.ctx, map.img)
         while (!isWhite(data)) {
             function isWhite(data) {
                 return data[0] == 255 && data[1] == 255 && data[2] == 255
