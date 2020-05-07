@@ -21,8 +21,8 @@
       var canvas = document.getElementById("canvas");
       var ctx = canvas.getContext('2d');
       ctx.drawImage(img, 0, 0)
-      x = getRandomInt(0,map.clientWidth);
-      y = getRandomInt(0,(map.clientWidth * IMAGE_RATIO));
+      x = getRandomInt(0,img.clientWidth);
+      y = getRandomInt(0,(img.clientWidth * IMAGE_RATIO));
       var pixel = ctx.getImageData(x, y, 1, 1);
       var data = pixel.data;
       console.log(data);
