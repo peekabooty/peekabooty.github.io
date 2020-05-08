@@ -4,6 +4,7 @@
     left: 30px;
     opacity: 0.85;
 }
+
 #hot_zone_picker {
     position: fixed;
     top: 55px;
@@ -12,12 +13,14 @@
     color: #fff;
     font-weight: 400;
     display: none;
-    padding-left: 15px;
-    padding-top: 5px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 15px;
     padding-bottom: 5px;
     border-radius: 0.25rem;
     opacity: 0.85;
 }
+
 #map {
     object-fit: cover;
     width: 100%;
@@ -27,6 +30,14 @@
     position: absolute;
 }
 
+input[type=checkbox] {
+    transform: scale(1.5);
+}
+
 body {
     background-color: black;
+}
+
+.form-check {
+    margin-bottom: 10px;
 }
