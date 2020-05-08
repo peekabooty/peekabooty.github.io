@@ -9,7 +9,7 @@ function setPin(x,y) {
 
 function matchColorsAndSelection(data)
 {
-    var hotDropStatus = document.getElementById("hot_drop").checked;
+    var hotDropStatus = true || document.getElementById("hot_drop").checked;
     var avgDropStatus = document.getElementById("avg_drop").checked;
     var safeDropStatus = document.getElementById("safe_drop").checked;
     var safestDropStatus = document.getElementById("safest_drop").checked;
