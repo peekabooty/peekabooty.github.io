@@ -51,9 +51,8 @@
             x = response[1];
             y = response[2];
         }
-        x = getRelativeX(y, img.width, map.width);
-        y = getRelativeY(x, img.height, map.height);
-        setPin("./../static/assets/pin.png",500,500);
+        setPin("./../static/assets/pin.png", getRelativeX(y, img.width, map.width), 
+            getRelativeY(x, img.height, map.height));
     };
     img.src = "./../static/assets/verdansk/mask.png";
 </script>
