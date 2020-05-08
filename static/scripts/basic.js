@@ -2,8 +2,8 @@ function setPin(x,y) {
     var pin = new Image(43,64);
     pin.src = "./../assets/pin.png";
     pin.id = "pin";
-    pin.style.top = y;
-    pin.style.left = x;
+    pin.style.top = y - pin.height;
+    pin.style.left = x - (pin.width/2);
     document.body.append(pin);
 }
 
