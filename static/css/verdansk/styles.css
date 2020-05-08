@@ -41,3 +41,27 @@ body {
 .form-check {
     margin-bottom: 10px;
 }
+
+#hot-drop-label-hot {
+    font-weight: 600;
+    color: orangered;
+    padding-left: 5px;
+}
+
+#hot-drop-label-avg {
+    font-weight: 600;
+    color: rgb(0, 124, 196);
+    padding-left: 5px;
+}
+
+#hot-drop-label-safe {
+    font-weight: 600;
+    color: rgb(87, 235, 74);
+    padding-left: 5px;
+}
+
+#hot-drop-label-safest {
+    font-weight: 600;
+    color: whitesmoke;
+    padding-left: 5px;
+}
