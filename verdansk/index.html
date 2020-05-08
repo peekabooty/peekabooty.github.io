@@ -37,7 +37,7 @@
         var ctx = canvas.getContext('2d');
         ctx.drawImage(img, 0, 0)
         data = [0, 0, 0];
-        while (!isWhite(data)) {
+        while (!isRed(data)) {
             response = getNextPixel(ctx, img);
             data = response[0];
             console.log(data);
@@ -62,8 +62,8 @@
         return [data, x, y]
     }
 
-    function isWhite(data) {
-        return true || data[0] == 255 && data[1] == 255 && data[2] == 255
+    function isRed(data) {
+        return data[0] && !data[1] && !data[2]
     }
 
     function getRelativeX(dropZoneX, maskWidth, mapWidth) {
