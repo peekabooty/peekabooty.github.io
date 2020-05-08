@@ -1,0 +1,31 @@
+#hot_zone_picker_toggle {
+    position: fixed;
+    top: 15px;
+    left: 30px;
+}
+#hot_zone_picker {
+    position: fixed;
+    top: 75px;
+    left: 30px;
+    background-color: #343a40;
+    color: #fff;
+    font-weight: 400;
+    display: none;
+    padding-left: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 0.25rem;
+    opacity: 0.85;
+}
+#map {
+    object-fit: cover;
+    width: 100%;
+}
+
+#pin {
+    position: absolute;
+}
+
+body {
+    background-color: black;
+}
