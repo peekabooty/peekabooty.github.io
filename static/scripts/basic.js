@@ -1,3 +1,26 @@
+function newPoint(src) {
+    var map = document.getElementById("map");
+    var img = new Image();
+    img.onload = function () {
+        img.style.display = 'none';
+        var canvas = document.createElement("canvas");
+        canvas.width = map.clientWidth;
+        canvas.height = map.clientWidth * IMAGE_RATIO;
+        var ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+        data = [];
+        while (!matchColorsAndSelection(data)) {
+            response = getNextPixel(ctx, img);
+            data = response[0];
+            x = response[1];
+            y = response[2];
+        }
+        setPin("./../static/assets/pin.png", getRelativeX(y, img.width, map.width), 
+            getRelativeY(x, img.height, map.height));
+    };
+    img.src = src;
+}
+
 function setPin(src,x,y) {
     var pin = new Image(43,64);
     pin.src = src;

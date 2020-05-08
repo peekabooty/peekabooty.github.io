@@ -28,31 +28,11 @@
     </div>
     <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox" id="safest_drop" value="safest_drop">
-        <label class="form-check-label" for="inlineCheckbox3">Pussy</label>
+        <label class="form-check-label" for="inlineCheckbox3">Really?</label>
     </div>
 </div>
 
 <script>
     const IMAGE_RATIO = 0.93;
-    var map = document.getElementById("map");
-
-    var img = new Image();
-    img.onload = function () {
-        img.style.display = 'none';
-        var canvas = document.createElement("canvas");
-        canvas.width = map.clientWidth;
-        canvas.height = map.clientWidth * IMAGE_RATIO;
-        var ctx = canvas.getContext('2d');
-        ctx.drawImage(img, 0, 0);
-        data = [];
-        while (!matchColorsAndSelection(data)) {
-            response = getNextPixel(ctx, img);
-            data = response[0];
-            x = response[1];
-            y = response[2];
-        }
-        setPin("./../static/assets/pin.png", getRelativeX(y, img.width, map.width), 
-            getRelativeY(x, img.height, map.height));
-    };
-    img.src = "./../static/assets/verdansk/mask.png";
+    newPoint("./../static/assets/verdansk/mask.png");
 </script>
