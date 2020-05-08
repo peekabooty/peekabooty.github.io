@@ -1,11 +1,54 @@
 <head>
     <title>Verdansk</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="icon" href="./../static/assets/icon.png" type="image/png" />
 </head>
 
-<img id="map" src="./../static/assets/verdansk/map.png" />
+    <img id="map" src="./../static/assets/verdansk/map.png" />
+    <div id="hot_zone_picker" class="form-group">
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="hot_drop">
+            <label class="form-check-label" for="inlineCheckbox1">Hot drop</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="avg_drop">
+            <label class="form-check-label" for="inlineCheckbox2">Normal drop</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="safe_drop">
+            <label class="form-check-label" for="inlineCheckbox3">Safe drop</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="safest_drop">
+            <label class="form-check-label" for="inlineCheckbox3">Pussy</label>
+        </div>
+    </div>
+    <button id="hot_zone_picker_toggle" type="button" class="btn btn-dark" onclick="changeDropZoneStatus()">Options</button>
 
 <style>
+    #hot_zone_picker_toggle {
+        position: fixed;
+        top: 15px;
+        left: 30px;
+    }
+    #hot_zone_picker {
+        position: fixed;
+        top: 75px;
+        left: 30px;
+        background-color: #343a40;
+        color: #fff;
+        font-weight: 400;
+        display: none;
+        padding-left: 15px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-radius: 0.25rem;
+        opacity: 0.85;
+    }
     #map {
         object-fit: cover;
         width: 100%;
@@ -22,7 +65,7 @@
 <script>
     const IMAGE_RATIO = 0.93;
 
-    var pin = new Image();
+    var pin = new Image(43,64);
     pin.src = "./../static/assets/pin.png";
     pin.id = "pin";
 
@@ -44,8 +87,8 @@
             x = response[1];
             y = response[2];
         }
-        pin.style.top = getRelativeY(y, img.height, map.height)-pin.height;
-        pin.style.left = getRelativeX(x, img.width, map.width)-(pin.width/2);
+        pin.style.top = getRelativeY(x, img.height, map.height)-pin.height;
+        pin.style.left = getRelativeX(y, img.width, map.width)-(pin.width/2);
         document.body.append(pin);
     };
     img.src = "./../static/assets/verdansk/mask.png";
@@ -66,6 +109,18 @@
         return data[0] && !data[1] && !data[2]
     }
 
+    function isGreen(data) {
+        return !data[0] && data[1] && !data[2]
+    }
+
+    function isBlue(data) {
+        return !data[0] && !data[1] && data[2]
+    }
+    
+    function isBlack(data) {
+        return data[0] && data[1] && data[2]
+    }
+
     function getRelativeX(dropZoneX, maskWidth, mapWidth) {
         console.log(`dropZoneX: ${dropZoneX}, mapWidth: ${mapWidth}, maskWidth: ${maskWidth}`)
         var relativeDropZoneX = dropZoneX * mapWidth / maskWidth
@@ -80,4 +135,12 @@
         return relativeDropZoneY
     }
 
+    function changeDropZoneStatus() {
+        var actualStatus = document.getElementById('hot_zone_picker').style.display;
+        if (actualStatus == "none") {
+            document.getElementById('hot_zone_picker').style.display = "block";
+        } else {
+            document.getElementById('hot_zone_picker').style.display = "none";
+        }
+    }
 </script>
