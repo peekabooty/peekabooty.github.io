@@ -34,5 +34,22 @@
 
 <script>
     const IMAGE_RATIO = 0.93;
-    newPoint("./../static/assets/verdansk/mask.png");
+    const MASK = "./../static/assets/verdansk/mask.png";
+    newPoint(MASK);
+
+    $('#hot_drop').change(function() {
+        newPoint(MASK);
+    })
+
+    $('#avg_drop').change(function() {
+        newPoint(MASK);
+    })
+
+    $('#safe_drop').change(function() {
+        newPoint(MASK);
+    })
+
+    $('#safest_drop').change(function() {
+        newPoint(MASK);
+    })
 </script>
