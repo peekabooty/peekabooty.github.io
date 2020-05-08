@@ -2,10 +2,11 @@
     position: fixed;
     top: 15px;
     left: 30px;
+    opacity: 0.85;
 }
 #hot_zone_picker {
     position: fixed;
-    top: 75px;
+    top: 55px;
     left: 30px;
     background-color: #343a40;
     color: #fff;

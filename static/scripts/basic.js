@@ -76,6 +76,10 @@ function changeDropZoneStatus() {
     if (document.getElementById('hot_zone_picker').style.display == "none") {
         document.getElementById('hot_zone_picker').style.display = "block";
     } else {
-        document.getElementById('hot_zone_picker').style.display = "none";
+        if (document.getElementById('hot_zone_picker').style.display == "") {
+            document.getElementById('hot_zone_picker').style.display = "block";
+        } else {
+            document.getElementById('hot_zone_picker').style.display = "none";
+        }        
     }
 }
