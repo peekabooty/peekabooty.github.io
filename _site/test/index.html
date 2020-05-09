@@ -1,0 +1,62 @@
+<head>
+    <title>Verdansk</title>
+    <link rel="icon" href="./../static/assets/icon.png" type="image/png" />
+</head>
+
+<body>
+    <h2 id="dropZone"></h2>
+</body>
+<script>
+    var tries = 0
+    var img = new Image()
+    img.onload = function () {
+        var map = loadDropZonesMap()
+        var dropZone = getRandomDropZone(map)
+        renderRandomDropZone(dropZone)
+    };
+    img.src = "./../static/assets/verdansk/mask.png"
+
+    function loadDropZonesMap() {
+        img.style.display = 'none'
+        var canvas = document.createElement('canvas')
+        canvas.width = img.width
+        canvas.height = img.height
+        var ctx = canvas.getContext('2d')
+        ctx.drawImage(img, 0, 0)
+        return {
+            ctx: ctx,
+            img: img
+        }
+    }
+
+    function getRandomDropZone(map) {
+        function getNextPixel(ctx, img) {
+            function getRandomInt(min, max) {
+                return Math.floor(Math.random() * (max - min)) + min
+            }
+            x = getRandomInt(0, img.width)
+            const IMAGE_RATIO = 0.93
+            y = getRandomInt(0, img.height)
+            var pixel = ctx.getImageData(x, y, 1, 1)
+            var data = pixel.data
+            return data
+        }
+        var data = getNextPixel(map.ctx, map.img)
+        function isWhite(data) {
+                return data[0] == 255 && data[1] == 255 && data[2] == 255
+            }
+        while (!isWhite(data)) {
+            data = getNextPixel(map.ctx, map.img);
+            tries++;
+        }
+        return {
+            x: x,
+            y: y
+        }
+    }
+
+    function renderRandomDropZone(dropZone) {
+        var dropZoneH2 = document.getElementById("dropZone");
+        dropZoneH2.innerHTML = `Se acabó el juego, nos deplegamos: ${dropZone.x},${dropZone.y}`
+    }
+</script>

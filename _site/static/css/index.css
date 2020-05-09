@@ -1,0 +1,24 @@
+body {
+    margin: 2.5%;
+    padding: 0px;
+    background-color: black;
+}
+
+#image-index {
+    float: left;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+a #image-index {
+    -webkit-transition: all 0.4s ease-out; /* Safari and Chrome */
+    -moz-transition: all 0.4s ease-out; /* Firefox */
+    -ms-transition: all 0.4s ease-out; /* IE 9 */
+    -o-transition: all 0.4s ease-out; /* Opera */
+    transition: all 0.4s ease-out;
+}
+
+a:hover #image-index {
+    transform: scale(1.05)
+}
