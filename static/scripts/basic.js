@@ -1,12 +1,14 @@
+var lastPin
+
 function newPoint(src) {
     var map = document.getElementById("map");
-    var img = new Image();
+    img = new Image();
     img.onload = function () {
         img.style.display = 'none';
-        var canvas = document.createElement("canvas");
+        canvas = document.createElement("canvas");
         canvas.width = img.width;
         canvas.height = img.height;
-        var ctx = canvas.getContext('2d');
+        ctx = canvas.getContext('2d');
         ctx.drawImage(img, 0, 0);
         do {
             response = getNextPixel(ctx, img);
@@ -14,17 +16,27 @@ function newPoint(src) {
             x = response[1];
             y = response[2];
         } while (!matchColorsAndSelection(data))
-        var borderMargin = parseInt(getComputedStyle(map).getPropertyValue('border-top-width').slice(0, 2))
-        var borderX = borderMargin
-        var borderY = borderMargin + document.body.scrollTop
-        var mapOriginX = map.getBoundingClientRect().left + borderX
-        var mapOriginY = map.getBoundingClientRect().top + borderY
-        setPin(
-            "./../static/assets/pin.png",
-            getRelativeX(x, img.width, mapOriginX, map.width),
-            getRelativeY(y, img.height, mapOriginY, map.height));
+        calculatePinPos(x, y)
     };
     img.src = src;
+}
+
+function calculatePinPos(x, y) {
+    var borderMargin = parseInt(getComputedStyle(map).getPropertyValue('border-top-width').slice(0, 2))
+    var borderX = borderMargin
+    var borderY = borderMargin + document.body.scrollTop
+    var mapOriginX = map.getBoundingClientRect().left + borderX
+    var mapOriginY = map.getBoundingClientRect().top + borderY
+    var xPinPos = getRelativeX(x, img.width, mapOriginX, map.width)
+    var yPinPos = getRelativeY(y, img.height, mapOriginY, map.height)
+    setPin(
+        "./../static/assets/pin.png",
+        xPinPos,
+        yPinPos);
+    lastPin = {
+        x: x,
+        y: y
+    }
 }
 
 function setPin(src, x, y) {
@@ -115,6 +127,9 @@ function zoomImage() {
         zoomOutImage()
     } else {
         zoomInImage()
+    }
+    if (lastPin != null) {
+        calculatePinPos(x, y)
     }
 }
 
