@@ -9,7 +9,9 @@ function newPoint(src) {
         var ctx = canvas.getContext('2d');
         ctx.drawImage(img, 0, 0);
         data = [];
-        while (!matchColorsAndSelection(data)) {
+        x = 0;
+        y = 0;
+        while (!x && !y && !matchColorsAndSelection(data)) {
             response = getNextPixel(ctx, img);
             data = response[0];
             x = response[1];
