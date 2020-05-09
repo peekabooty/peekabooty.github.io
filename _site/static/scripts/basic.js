@@ -3,6 +3,7 @@ var lastPin
 window.onresize = onWindowResized
 
 function onWindowResized() {
+    console.log(`${window.innerWidth}x${window.innerHeight}`)
     calculatePinPos(lastPin.x, lastPin.y)
 }
 
@@ -141,20 +142,18 @@ function zoomImage() {
 }
 
 function isZoomedIn() {
-    var mapContainer = document.getElementById('map-container')
-    var width = mapContainer.style.width;
-    var height = mapContainer.style.height;
-    return width == 'auto' && height == 'auto'
+    var map = document.getElementById('map')
+    return map.classList.contains('zoom-in')
 }
 
 function zoomOutImage() {
-    var mapContainer = document.getElementById('map-container')
-    mapContainer.style.width = '100%'
-    mapContainer.style.height = '100%'
+    var map = document.getElementById('map')
+    map.classList.remove('zoom-in')
+    map.classList.add('zoom-out')
 }
 
 function zoomInImage() {
-    var mapContainer = document.getElementById('map-container')
-    mapContainer.style.width = 'auto'
-    mapContainer.style.height = 'auto'
+    var map = document.getElementById('map')
+    map.classList.remove('zoom-out')
+    map.classList.add('zoom-in')
 }
