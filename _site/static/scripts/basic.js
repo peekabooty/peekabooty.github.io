@@ -15,7 +15,6 @@ function newPoint(src) {
             y = response[2];
         } while (!matchColorsAndSelection(data))
         var borderMargin = parseInt(getComputedStyle(map).getPropertyValue('border-left-width').slice(0, 2))
-        console.log(borderMargin)
         var mapOriginX = map.getBoundingClientRect().left + borderMargin
         var mapOriginY = map.getBoundingClientRect().top + borderMargin
         setPin(
@@ -75,8 +74,8 @@ function getRelativeX(dropZoneX, maskWidth, mapOriginX, mapWidth) {
     var relativeX = dropZoneX * mapWidth / maskWidth
     console.log(`original mask point: ${dropZoneX}`)
     console.log(`original mask width: ${maskWidth}`)
-    console.log(`map x origin: ${maskWidth}`)
-    console.log(`map width: ${maskWidth}`)
+    console.log(`map x origin: ${mapOriginX}`)
+    console.log(`map width: ${mapWidth}`)
     relativeX += mapOriginX
     console.log(`final relative x: ${relativeX}`)
     return relativeX
@@ -84,7 +83,12 @@ function getRelativeX(dropZoneX, maskWidth, mapOriginX, mapWidth) {
 
 function getRelativeY(dropZoneY, maskHeight, mapOriginY, mapHeight) {
     var relativeY = dropZoneY * mapHeight / maskHeight
+    console.log(`original mask point: ${dropZoneY}`)
+    console.log(`original mask width: ${maskHeight}`)
+    console.log(`map y origin: ${mapOriginY}`)
+    console.log(`map width: ${mapHeight}`)
     relativeY += mapOriginY
+    console.log(`final relative y: ${relativeY}`)
     return relativeY
 }
 
