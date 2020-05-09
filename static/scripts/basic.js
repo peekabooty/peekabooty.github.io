@@ -37,6 +37,7 @@ function calculatePinPos(x, y) {
         x: x,
         y: y
     }
+    document.body.scrollTo(xPinPos, yPinPos)
 }
 
 function setPin(src, x, y) {
