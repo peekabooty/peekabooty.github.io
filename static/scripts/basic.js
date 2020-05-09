@@ -15,8 +15,10 @@ function newPoint(src) {
             x = response[1];
             y = response[2];
         }
+        console.log(x,y);
         setPin("./../static/assets/pin.png", getRelativeX(y, img.width, map.width), 
             getRelativeY(x, img.height, map.height));
+        console.log(getRelativeX(y, img.width, map.width),getRelativeY(x, img.height, map.height));
     };
     img.src = src;
 }
