@@ -41,7 +41,7 @@ function matchColorsAndSelection(data)
     var safestDropStatus = document.getElementById("safest_drop").checked;
 
     return data && (hotDropStatus && isRed(data) || avgDropStatus && isBlue(data) || 
-        safeDropStatus && isGreen(data) || safestDropStatus);
+        safeDropStatus && isGreen(data) || safestDropStatus && isBlack(data));
 }
 
 function isRed(data) {
@@ -54,6 +54,10 @@ function isGreen(data) {
 
 function isBlue(data) {
     return !data[0] && !data[1] && data[2]
+}
+
+function isBlack(data) {
+    return !data[0] && !data[1] && !data[2]
 }
 
 function getNextPixel(ctx, img) {
