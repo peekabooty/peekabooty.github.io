@@ -14,9 +14,15 @@ function newPoint(src) {
             x = response[1];
             y = response[2];
         } while (!matchColorsAndSelection(data))
-        var borderMargin = parseInt(getComputedStyle(map).getPropertyValue('border-left-width').slice(0, 2))
-        var mapOriginX = map.getBoundingClientRect().left + borderMargin
-        var mapOriginY = map.getBoundingClientRect().top + borderMargin
+        var borderMargin = parseInt(getComputedStyle(map).getPropertyValue('border-top-width').slice(0, 2))
+        var borderX = borderMargin
+        var borderY = borderMargin + document.body.scrollTop
+        console.log(borderX)
+        console.log(borderY)
+        var mapOriginX = map.getBoundingClientRect().left + borderX
+        var mapOriginY = map.getBoundingClientRect().top + borderY
+        console.log(mapOriginX)
+        console.log(borderY)
         setPin(
             "./../static/assets/pin.png",
             getRelativeX(x, img.width, mapOriginX, map.width),
