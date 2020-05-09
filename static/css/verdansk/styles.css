@@ -5,6 +5,13 @@
     opacity: 0.85;
 }
 
+#hot_zone_picker_calculate {
+    position: fixed;
+    top: 15px;
+    left: 85px;
+    opacity: 0.85;
+}
+
 #hot_zone_picker {
     position: fixed;
     top: 55px;

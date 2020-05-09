@@ -17,6 +17,14 @@
         <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 013 11h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5zm0-4A.5.5 0 013 7h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5zm0-4A.5.5 0 013 3h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
     </svg>
 </button>
+<button id="hot_zone_picker_calculate" type="button" class="btn btn-dark" onclick="newPoint(MASK)">
+    <svg class="bi bi-bullseye" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z" clip-rule="evenodd"/>
+        <path fill-rule="evenodd" d="M8 13A5 5 0 108 3a5 5 0 000 10zm0 1A6 6 0 108 2a6 6 0 000 12z" clip-rule="evenodd"/>
+        <path fill-rule="evenodd" d="M8 11a3 3 0 100-6 3 3 0 000 6zm0 1a4 4 0 100-8 4 4 0 000 8z" clip-rule="evenodd"/>
+        <path d="M9.5 8a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/>
+      </svg>
+</button>
 <div id="hot_zone_picker" class="form-group">
     <div class="form-check">
         <input class="form-check-input" type="checkbox" id="hot_drop" value="hot_drop">
@@ -39,21 +47,4 @@
 <script>
     const IMAGE_RATIO = 0.93;
     const MASK = "./../static/assets/verdansk/mask.png";
-    newPoint(MASK);
-
-    $('#hot_drop').change(function() {
-        newPoint(MASK);
-    })
-
-    $('#avg_drop').change(function() {
-        newPoint(MASK);
-    })
-
-    $('#safe_drop').change(function() {
-        newPoint(MASK);
-    })
-
-    $('#safest_drop').change(function() {
-        newPoint(MASK);
-    })
 </script>
