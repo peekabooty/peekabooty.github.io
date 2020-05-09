@@ -8,14 +8,13 @@ function newPoint(src) {
         canvas.height = img.height;
         var ctx = canvas.getContext('2d');
         ctx.drawImage(img, 0, 0);
-        data = [];
-        while (!matchColorsAndSelection(data)) {
+        do {
             response = getNextPixel(ctx, img);
             data = response[0];
             x = response[1];
             y = response[2];
-        }
-        setPin("./../static/assets/pin.png", getRelativeX(x, img.width, map.width),
+        } while(!matchColorsAndSelection(data))
+        setPin("./../static/assets/pin.png", getRelativeX(x, img.width, map.width), 
             getRelativeY(y, img.height, map.height));
     };
     img.src = src;
