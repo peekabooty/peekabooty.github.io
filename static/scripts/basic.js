@@ -37,7 +37,8 @@ function calculatePinPos(x, y) {
         x: x,
         y: y
     }
-    document.body.scrollTo(xPinPos, yPinPos)
+    var mapHeight = Math.abs(map.getBoundingClientRect().y) / 2
+    document.body.scrollTo(xPinPos, yPinPos - mapHeight)
 }
 
 function setPin(src, x, y) {
