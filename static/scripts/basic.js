@@ -22,7 +22,9 @@ function newPoint(src) {
 }
 
 function setPin(src,x,y) {
-    document.body.removeChild(document.getElementById("pin"));
+    if (document.getElementById("pin")) {
+        document.body.removeChild(document.getElementById("pin"));
+    }
     var pin = new Image(43,64);
     pin.src = src;
     pin.id = "pin";
