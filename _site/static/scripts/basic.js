@@ -1,6 +1,6 @@
 var lastPin
 
-function newPoint(src) {
+function newPoint() {
     var map = document.getElementById("map");
     img = new Image();
     img.onload = function () {
@@ -18,7 +18,7 @@ function newPoint(src) {
         } while (!matchColorsAndSelection(data))
         calculatePinPos(x, y)
     };
-    img.src = src;
+    img.src = "./../static/assets/verdansk/mask.png";
 }
 
 function calculatePinPos(x, y) {
