@@ -4,8 +4,8 @@ function newPoint(src) {
     img.onload = function () {
         img.style.display = 'none';
         var canvas = document.createElement("canvas");
-        canvas.width = map.clientWidth;
-        canvas.height = map.clientWidth * IMAGE_RATIO;
+        canvas.width = img.width;//map.clientWidth;
+        canvas.height = img.height;//map.clientWidth * IMAGE_RATIO;
         var ctx = canvas.getContext('2d');
         ctx.drawImage(img, 0, 0);
         data = [];
