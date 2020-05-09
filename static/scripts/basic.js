@@ -17,12 +17,8 @@ function newPoint(src) {
         var borderMargin = parseInt(getComputedStyle(map).getPropertyValue('border-top-width').slice(0, 2))
         var borderX = borderMargin
         var borderY = borderMargin + document.body.scrollTop
-        console.log(borderX)
-        console.log(borderY)
         var mapOriginX = map.getBoundingClientRect().left + borderX
         var mapOriginY = map.getBoundingClientRect().top + borderY
-        console.log(mapOriginX)
-        console.log(mapOriginY)
         setPin(
             "./../static/assets/pin.png",
             getRelativeX(x, img.width, mapOriginX, map.width),
