@@ -13,9 +13,15 @@ function newPoint(src) {
             data = response[0];
             x = response[1];
             y = response[2];
-        } while(!matchColorsAndSelection(data))
-        setPin("./../static/assets/pin.png", getRelativeX(x, img.width, map.width), 
-            getRelativeY(y, img.height, map.height));
+        } while (!matchColorsAndSelection(data))
+        var borderMargin = parseInt(getComputedStyle(map).getPropertyValue('border-left-width').slice(0, 2))
+        console.log(borderMargin)
+        var mapOriginX = map.getBoundingClientRect().left + borderMargin
+        var mapOriginY = map.getBoundingClientRect().top + borderMargin
+        setPin(
+            "./../static/assets/pin.png",
+            getRelativeX(x, img.width, mapOriginX, map.width),
+            getRelativeY(y, img.height, mapOriginY, map.height));
     };
     img.src = src;
 }
@@ -65,12 +71,21 @@ function getNextPixel(ctx, img) {
     return [data, x, y]
 }
 
-function getRelativeX(dropZoneX, maskWidth, mapWidth) {
-    return dropZoneX * mapWidth / maskWidth
+function getRelativeX(dropZoneX, maskWidth, mapOriginX, mapWidth) {
+    var relativeX = dropZoneX * mapWidth / maskWidth
+    console.log(`original mask point: ${dropZoneX}`)
+    console.log(`original mask width: ${maskWidth}`)
+    console.log(`map x origin: ${maskWidth}`)
+    console.log(`map width: ${maskWidth}`)
+    relativeX += mapOriginX
+    console.log(`final relative x: ${relativeX}`)
+    return relativeX
 }
 
-function getRelativeY(dropZoneY, maskHeight, mapHeight) {
-    return dropZoneY * mapHeight / maskHeight
+function getRelativeY(dropZoneY, maskHeight, mapOriginY, mapHeight) {
+    var relativeY = dropZoneY * mapHeight / maskHeight
+    relativeY += mapOriginY
+    return relativeY
 }
 
 function getRandomInt(min, max) {
