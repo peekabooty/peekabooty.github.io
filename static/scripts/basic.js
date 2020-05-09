@@ -72,7 +72,7 @@ function getRelativeY(dropZoneY, maskHeight, mapHeight) {
 }
 
 function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min)) + min;
+    return Math.round(Math.random() * (max - min)) + min;
 }
 
 function changeDropZoneStatus() {
