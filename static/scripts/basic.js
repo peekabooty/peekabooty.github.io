@@ -1,5 +1,11 @@
 var lastPin
 
+window.onresize = onWindowResized
+
+function onWindowResized() {
+    calculatePinPos(lastPin.x, lastPin.y)
+}
+
 function newPoint() {
     var map = document.getElementById("map");
     img = new Image();
@@ -37,8 +43,7 @@ function calculatePinPos(x, y) {
         x: x,
         y: y
     }
-    var mapHeight = Math.abs(map.getBoundingClientRect().y) / 2
-    document.body.scrollTo(xPinPos, yPinPos - mapHeight)
+    document.body.scrollTo(xPinPos, Math.max(0, yPinPos - 600))
 }
 
 function setPin(src, x, y) {
@@ -131,7 +136,7 @@ function zoomImage() {
         zoomInImage()
     }
     if (lastPin != null) {
-        calculatePinPos(x, y)
+        calculatePinPos(lastPin.x, lastPin.y)
     }
 }
 
