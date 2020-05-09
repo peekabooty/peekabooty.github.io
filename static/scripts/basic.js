@@ -11,7 +11,7 @@ function newPoint(src) {
         data = [];
         x = 0;
         y = 0;
-        while (!x && !y && !matchColorsAndSelection(data)) {
+        while (!matchColorsAndSelection(data)) {
             response = getNextPixel(ctx, img);
             data = response[0];
             x = response[1];
